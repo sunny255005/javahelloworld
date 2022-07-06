@@ -1,21 +1,63 @@
+
+
+
 pipeline{
     
     agent any
-	tools{
-	maven 'Maven3'
-	}    
-    
     
     stages{
-        stage("git checkout"){
+        
+     stage("Stage1")
+        {
+             steps {
+                 
+                 script {
+                    
+                    myStage = input message: 'What stage do you want to run now?', parameters: [choice(choices: 'Stage2\nStage3', description: '', name: 'Stage')]
+                }
+                sh 'echo started'
+                
+                
+        }
+        
+        }
+        stage("Stage2")
+        {
+          
+              when {
+                expression { myStage == 'Stage2' }
+            }
+       
+        steps{
+         
+      
+            
+        
+        git url:"https://github.com/sunny255005/javahelloworld.git", branch:"${params.branch}"
+        
+      sh   "echo pulling src code from branch ${params.branch}"
+         script {
+                    myStage = input message: 'What stage do you want to run now?', parameters: [choice(choices: 'Stage3', description: '', name: 'Stage')]
+                }
+            }
+        
+        }
+        
+        stage("Stage3")
+        {
+            
+              when {
+                expression { myStage == 'Stage3' }
+            }
+              
             steps{
-          checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sunny255005/javahelloworld.git']]])
+                sh 'echo finish'
+                
+            }
         }
-}
-            stage("maven build"){
-                steps{
-         sh "mvn clean install"
+        
+        
         }
-            }      
-    }
+    
+        
 }
