@@ -7,6 +7,16 @@ pipeline{
     
     stages{
         
+          stage('Collect Info')
+  {
+    steps
+    {
+      echo "Hello ${params.PERSON2}"
+      echo "PASS_BRANCH_NAME: ${params.PASS_BRANCH_NAME}"
+    }
+  }
+        
+        /*
      stage("Stage1")
         {
              steps {
@@ -55,7 +65,7 @@ pipeline{
                 
             }
         }
-        
+        */
         
         }
     
