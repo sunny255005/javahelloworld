@@ -1,5 +1,9 @@
 
-
+ properties([
+  	parameters([
+  		string(name: 'PASS_BRANCH_NAME')
+  	])
+  ])
 
 pipeline{
     
