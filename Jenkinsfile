@@ -9,7 +9,7 @@ pipeline{
                  
                  script {
                     
-                    myStage = input message: 'What stage do you want to run now?', parameters: [choice(choices: 'Stage2\nStage3', description: '', name: 'Stage')]
+                    myStage = input message: 'What stage do you want to run now?', parameters: [choice(choices: 'dev\nprod', description: '', name: 'Stage')]
                 }
                 sh 'echo started'
                 
@@ -17,11 +17,11 @@ pipeline{
         }
         
         }
-        stage("Stage2")
+        stage("dev")
         {
           
               when {
-                expression { myStage == 'Stage2' }
+                expression { myStage == 'dev' }
             }
        
         steps{
@@ -39,11 +39,11 @@ pipeline{
         
         }
         
-        stage("Stage3")
+        stage("prod")
         {
             
               when {
-                expression { myStage == 'Stage3' }
+                expression { myStage == 'prod' }
             }
               
             steps{
