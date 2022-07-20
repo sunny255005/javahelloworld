@@ -29,7 +29,7 @@ pipeline{
       
             
         
-       // git url:"https://github.com/sunny255005/javahelloworld.git", branch:"${params.branch}"
+       git url:"https://github.com/sunny255005/javahelloworld.git", branch:"${params.branch}"
         
       sh   "echo pulling src code from branch ${params.env}"
          script {
