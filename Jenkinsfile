@@ -31,9 +31,8 @@ pipeline{
       
             
         
-       git url:"https://github.com/sunny255005/javahelloworld.git", branch:"${params.branch}"
-        
-      sh   "echo pulling src code from branch ${params.env}"
+      
+      sh   "echo pulling src code "
          script {
                     myStage = input message: 'What stage do you want to run now?', parameters: [choice(choices: 'prod', description: '', name: 'env')]
                 }
