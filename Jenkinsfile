@@ -3,14 +3,16 @@ pipeline{
     
     agent any
    
-     stage("Stage1")
+   stages{
+     stage("stage1")
         {
              steps {
                  
                  script {
                     
-                    myStage = input message: 'What stage do you want to run now?', parameters: [choice(choices: 'dev\nprod', description: '', name: 'Stage')]
+                    myStage = input message: 'What stage do you want to run now?', parameters: [choice(choices: 'dev\nprod', description: '', name: 'Env')]
                 }
+                
                 sh 'echo started'
                 
                 
@@ -33,7 +35,7 @@ pipeline{
         
       sh   "echo pulling src code from branch ${params.env}"
          script {
-                    myStage = input message: 'What stage do you want to run now?', parameters: [choice(choices: 'Stage3', description: '', name: 'Stage')]
+                    myStage = input message: 'What stage do you want to run now?', parameters: [choice(choices: 'prod', description: '', name: 'env')]
                 }
             }
         
@@ -56,4 +58,4 @@ pipeline{
         }
     
         
-
+}
