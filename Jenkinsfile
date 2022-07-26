@@ -22,7 +22,7 @@ pipeline {
                         description:'Environment choices', name:'denv', choices: "Development\nProduction\nTesting"]
                     ])
                     user_env_input = userInput
-                    sh ' i am souradip echo ${params.env}'
+                    //sh ' i am souradip echo ${params.env}'
                     //Use this value to branch to different logic if needed
                 }
             }
