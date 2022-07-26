@@ -1,4 +1,6 @@
-properties([parameters([string(defaultValue: 'prod', name: 'env')])])
+properties([parameters([string('env')])])
+
+
 pipeline {
     environment { 
         
@@ -8,6 +10,7 @@ pipeline {
         
 
     }
+  
     agent any
 
     stages {
