@@ -19,7 +19,7 @@ pipeline {
                 script {
                   
                      
-                    user_env_input = sh 'echo ${env}'
+                    user_env_input = $(sh 'echo ${env}')
                    
 
                    
