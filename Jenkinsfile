@@ -21,7 +21,7 @@ pipeline {
                      
                     user_env_input = "Production"
                    
-                   user_der=$(sh 'echo ${env}')
+                    user_der=${sh 'echo ${env}'}
 
                    sh 'echo ${user_der}'
 
