@@ -7,52 +7,24 @@ pipeline{
      stage("stage1")
         {
              steps {
-                 
-                 script {
-                    
-                    myStage = input message: 'What stage do you want to run now?', parameters: [choice(choices: 'dev\nprod', description: '', name: 'Env')]
-                }
                 
-                sh 'echo started'
+                sh 'echo stage1 started'
                 
                 
         }
         
         }
-        stage("dev")
+
+        stage("stage2")
         {
-          
-              when {
-                expression { myStage == 'dev' }
-            }
-       
-        steps{
-         
-      
-            
-        
-      
-      sh   "echo pulling src code "
-         script {
-                    myStage = input message: 'What stage do you want to run now?', parameters: [choice(choices: 'prod', description: '', name: 'env')]
-                }
-            }
-        
-        }
-        
-        stage("prod")
-        {
-            
-              when {
-                expression { myStage == 'prod' }
-            }
-              
-            steps{
-                sh 'echo finish'
+             steps {
                 
-            }
+                sh 'echo stage2 started'
+                
+                
         }
-     
+        
+        }
         
         }
     
