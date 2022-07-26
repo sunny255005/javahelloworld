@@ -19,12 +19,11 @@ pipeline {
                 script {
                   
                      
-                    user_env_input = "Production"
+                    user_env_input = "Testing"
                    
-                    user_der=${sh 'echo ${env}'}
+                   sh 'echo ${env}'
 
-                   sh 'echo ${user_der}'
-
+                   
                   
                     //Use this value to branch to different logic if needed
                 }
