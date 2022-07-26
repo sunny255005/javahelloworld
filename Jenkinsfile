@@ -19,7 +19,7 @@ pipeline {
                 script {
                   
                     echo "hello dj ${env}" 
-                    user_env_input = "Production
+                    user_env_input = "Production"
                    
 
                   
