@@ -19,7 +19,13 @@ pipeline {
                 script {
                   
                      
-                    user_env_input = ${sh 'echo ${env}'}
+                    script {
+   GIT_COMMIT_EMAIL = sh (
+        script: 'sh 'echo ${env}'',
+        returnStdout: true
+    ).trim()
+    echo "Git committer email: ${GIT_COMMIT_EMAIL}"
+}
                    
 
                    
