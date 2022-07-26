@@ -23,12 +23,8 @@ pipeline {
                    
 
                    sh 'echo ${env}'
-                   script {
-      DIR_SIZE = sh(returnStdout: true, script: " sh 'echo ${env}'")
-    }
-
-    echo "dir size = ${DIR_SIZE}"
                    
+
                   
                     //Use this value to branch to different logic if needed
                 }
