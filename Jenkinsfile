@@ -17,11 +17,12 @@ pipeline {
         stage('Which environment to build?') {
             steps {
                 script {
-                    
-                    user_env_input = userInput
+                  
+                    echo "hello dj ${env}" 
+                    user_env_input = "Production
                    
 
-                    echo "hello dj"
+                  
                     //Use this value to branch to different logic if needed
                 }
             }
