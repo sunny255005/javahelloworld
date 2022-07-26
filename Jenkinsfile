@@ -19,9 +19,13 @@ pipeline {
                 script {
                   
                      
-                    user_env_input = "Testing"
+                    user_env_input = "Production"
                    
                    sh 'echo ${env}'
+
+                 
+      DIR_SIZE = sh(returnStdout: true, script: '   sh "echo ${env}"')
+    
 
                    
                   
