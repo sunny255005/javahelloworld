@@ -1,9 +1,11 @@
+properties([parameters([string(defaultValue: 'prod', name: 'env')])])
 pipeline {
     environment { 
         
         PROD_BRANCH = "master"
         STAGING_BRANCH = "staging"
         user_env_input = "Development"
+        
 
     }
     agent any
@@ -17,6 +19,7 @@ pipeline {
                         description:'Environment choices', name:'denv', choices: "Development\nProduction\nTesting"]
                     ])
                     user_env_input = userInput
+                    sh ' i am souradip echo ${params.env}'
                     //Use this value to branch to different logic if needed
                 }
             }
