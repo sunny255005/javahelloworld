@@ -25,10 +25,11 @@ pipeline {
         returnStdout: true
     ).trim()
     echo "Git committer email: ${GIT_COMMIT_EMAIL}"
+                         user_env_input=GIT_COMMIT_EMAIL
 }
                    
 
-                   
+                  
                    
 
                   
