@@ -19,10 +19,10 @@ pipeline {
                 script {
                   
                      
-                    user_env_input = "Production"
+                    user_env_input = sh 'echo ${env}'
                    
 
-                   sh 'echo ${env}'
+                   
                    
 
                   
