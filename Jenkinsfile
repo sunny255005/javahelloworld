@@ -21,12 +21,13 @@ pipeline {
                      
                     user_env_input = "Production"
                    
+
                    sh 'echo ${env}'
+                   script {
+      DIR_SIZE = sh(returnStdout: true, script: " sh 'echo ${env}'")
+    }
 
-                 
-      DIR_SIZE = sh(returnStdout: true, script: '   sh "echo ${env}"')
     
-
                    
                   
                     //Use this value to branch to different logic if needed
