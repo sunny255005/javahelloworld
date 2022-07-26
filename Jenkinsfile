@@ -17,12 +17,12 @@ pipeline {
         stage('Which environment to build?') {
             steps {
                 script {
-                    def userInput = input(id: 'userInput', message: 'Deploy to?',
-                    parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'Development', 
-                        description:'Environment choices', name:'denv', choices: "Development\nProduction\nTesting"]
-                    ])
+                    
                     user_env_input = userInput
-                    sh 'echo  DJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ${env}'
+                   
+
+                    myenv=$(sh 'echo  DJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ${env}')
+                    echo ${myenv}
                     //Use this value to branch to different logic if needed
                 }
             }
