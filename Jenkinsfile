@@ -7,7 +7,7 @@ pipeline {
         PROD_BRANCH = "master"
         STAGING_BRANCH = "staging"
         user_env_input = "Development"
-        
+        myenv=${env}
 
     }
   
@@ -21,8 +21,7 @@ pipeline {
                     user_env_input = userInput
                    
 
-                    myenv=$(sh 'echo  DJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ${env}')
-                    echo ${myenv}
+                   echo 'DJJJJJJJJJJJJJJ ' + myenv
                     //Use this value to branch to different logic if needed
                 }
             }
