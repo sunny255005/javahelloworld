@@ -20,7 +20,7 @@ pipeline {
         script: 'echo ${env}',
         returnStdout: true
     ).trim()
-                        echo "Git committer email: ${new_user_env_input}"
+                        echo "new_user_env_input: ${new_user_env_input}"
                         user_env_input = new_user_env_input
                     }
 
