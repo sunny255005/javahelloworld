@@ -7,7 +7,7 @@ pipeline {
         PROD_BRANCH = "master"
         STAGING_BRANCH = "staging"
         user_env_input = "Development"
-        myenv=${env}
+        myenv="${env}"
 
     }
   
