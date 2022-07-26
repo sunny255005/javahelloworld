@@ -36,7 +36,7 @@ pipeline {
         
         stage('ECR Push'){
             steps{
-               sh 'echo ECR Push
+               sh 'echo ECR Push'
             }
         }
 
