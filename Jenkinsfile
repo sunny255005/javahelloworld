@@ -1,28 +1,69 @@
 pipeline {
-    agent any
-    parameters {
-        booleanParam(name: "TEST_BOOLEAN", defaultValue: true, description: "Sample boolean parameter")
-        string(name: "TEST_STRING", defaultValue: "ssbostan", trim: true, description: "Sample string parameter")
-        text(name: "TEST_TEXT", defaultValue: "Jenkins Pipeline Tutorial", description: "Sample multi-line text parameter")
-        password(name: "TEST_PASSWORD", defaultValue: "SECRET", description: "Sample password parameter")
-        choice(name: "TEST_CHOICE", choices: ["production", "staging", "development"], description: "Sample multi-choice parameter")
+    environment { 
+        
+        PROD_BRANCH = "master"
+        STAGING_BRANCH = "staging"
+        user_env_input = "Development"
+
     }
+    agent any
+
     stages {
-        stage("Build") {
+        stage('Which environment to build?') {
             steps {
-                echo "Build stage."
-                echo "Hello $params.TEST_STRING"
+                script {
+                    def userInput = input(id: 'userInput', message: 'Deploy to?',
+                    parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'Development', 
+                        description:'Environment choices', name:'denv', choices: "Development\nProduction\nTesting"]
+                    ])
+                    user_env_input = userInput
+                    //Use this value to branch to different logic if needed
+                }
             }
         }
-        stage("Test") {
+        stage('Confirm') {
             steps {
-                echo "Test stage."
+                input("Do you want to proceed building in ${user_env_input} environment?")
+            }
+        }       
+        stage('Docker Build') {
+            steps {
+                echo 'Building..'
+                
+                }
             }
         }
-        stage("Release") {
-            steps {
-                echo "Release stage."
+        
+        stage('ECR Push'){
+            steps{
+               sh 'echo ECR Push
             }
         }
+
+        stage('Image Name Change') {
+            steps{
+               sh 'echo Image Name Change'
+            }
+        }
+        
+        stage('Deploy') {
+            steps{
+                script {
+                    if (user_env_input == "Production") {
+                        echo 'master branch'
+                    } else if (user_env_input == "Testing") {
+                        echo 'staging branch'
+                        
+                    } else {
+                        echo 'dev branch'
+                         
+                    }
+                }
+            }                    
+        }
+        
+        
+        
+        
     }
 }
