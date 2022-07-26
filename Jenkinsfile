@@ -1,39 +1,30 @@
 properties([parameters([string('env')])])
 
-
 pipeline {
-    environment { 
-        
-        PROD_BRANCH = "master"
-        STAGING_BRANCH = "staging"
-        user_env_input = "Development"
-       
+    environment {
+        PROD_BRANCH = 'master'
+        STAGING_BRANCH = 'staging'
+        user_env_input = 'Development'
 
     }
-  
+
     agent any
 
     stages {
         stage('Which environment to build?') {
             steps {
                 script {
-                  
-                     
+
                     script {
-   GIT_COMMIT_EMAIL = sh (
+                        new_user_env_input = sh (
         script: 'echo ${env}',
         returnStdout: true
     ).trim()
-    echo "Git committer email: ${GIT_COMMIT_EMAIL}"
-                         user_env_input=GIT_COMMIT_EMAIL
-}
-                   
+                        echo "Git committer email: ${new_user_env_input}"
+                        user_env_input = new_user_env_input
+                    }
 
-                  
-                   
-
-                  
-                    //Use this value to branch to different logic if needed
+                //Use this value to branch to different logic if needed
                 }
             }
         }
@@ -41,45 +32,38 @@ pipeline {
             steps {
                 input("Do you want to proceed building in ${user_env_input} environment?")
             }
-        }       
+        }
         stage('Docker Build') {
             steps {
                 echo 'Building..'
-                
-                }
             }
-        
-        
-        stage('ECR Push'){
-            steps{
-               sh 'echo ECR Push'
+        }
+
+        stage('ECR Push') {
+            steps {
+                sh 'echo ECR Push'
             }
         }
 
         stage('Image Name Change') {
-            steps{
-               sh 'echo Image Name Change'
+            steps {
+                sh 'echo Image Name Change'
             }
         }
-        
+
         stage('Deploy') {
-            steps{
+            steps {
                 script {
-                    if (user_env_input == "Production") {
+                    if (user_env_input == 'Production') {
                         echo 'master branch'
-                    } else if (user_env_input == "Testing") {
+                    } else if (user_env_input == 'Testing') {
                         echo 'staging branch'
-                        
                     } else {
                         echo 'dev branch'
-                         
                     }
                 }
-            }                    
+            }
         }
-        
-        
-        
-        
+
     }
 }
