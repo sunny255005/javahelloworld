@@ -18,9 +18,12 @@ pipeline {
             steps {
                 script {
                   
-                    sh 'echo hello dj ${env}' 
+                     
                     user_env_input = "Production"
                    
+                   user_der=$(sh 'echo ${env}')
+
+                   sh 'echo ${user_der}'
 
                   
                     //Use this value to branch to different logic if needed
