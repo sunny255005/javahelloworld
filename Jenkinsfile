@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                   
-                    echo "hello dj ${env}" 
+                    sh 'echo hello dj ${env}' 
                     user_env_input = "Production"
                    
 
