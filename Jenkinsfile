@@ -21,7 +21,7 @@ pipeline {
                     user_env_input = userInput
                    
 
-                    echo "djjjjj********** ${env}"
+                    echo "hello dj"
                     //Use this value to branch to different logic if needed
                 }
             }
