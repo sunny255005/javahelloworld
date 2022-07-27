@@ -14,14 +14,14 @@ pipeline {
         stage('Which environment to build?') {
             steps {
                 script {
-
+ echo "automated value: ${automated} you"
                     script {
                         new_user_env_input = sh (
         script: 'echo ${env}',
         returnStdout: true
     ).trim()
                         echo "new_user_env_input: ${new_user_env_input}"
-                        echo "automated value: ${automated}"
+                       
                         user_env_input = new_user_env_input
                     }
 
