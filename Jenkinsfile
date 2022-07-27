@@ -17,15 +17,19 @@ pipeline {
                         new_user_env_input = sh (
                                     script: 'echo ${env}',
                                     returnStdout: true
-                        ).trim(),
-                        automated_value = sh (
+                        ).trim()
+
+                        echo "new_user_env_input: ${new_user_env_input}"
+                        user_env_input = new_user_env_input
+
+                        script {
+                            automated_value = sh (
                                     script: 'echo ${automated}',
                                     returnStdout: true
                         ).trim()
 
-                        echo "new_user_env_input: ${new_user_env_input}"
-                        echo "automated value: ${automated value}"
-                        user_env_input = new_user_env_input
+                            echo "automated value: ${automated value}"
+                        }
                     }
 
                 //Use this value to branch to different logic if needed
