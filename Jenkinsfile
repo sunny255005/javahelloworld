@@ -21,7 +21,7 @@ pipeline {
         returnStdout: true
     ).trim()
                         echo "new_user_env_input: ${new_user_env_input}"
-                        echo "automated value ${automated}"
+                        
                         user_env_input = new_user_env_input
                     }
 
@@ -31,6 +31,20 @@ pipeline {
         }
         stage('Confirm') {
             steps {
+                script {
+
+                    script {
+                        automated_value = sh (
+        script: 'echo ${env}',
+        returnStdout: true
+    ).trim()
+                        echo "automated_value: ${automated_value}"
+                        
+                       
+                    }
+
+                //Use this value to branch to different logic if needed
+                }
                 input("Do you want to proceed building in ${user_env_input} environment?")
             }
         }
