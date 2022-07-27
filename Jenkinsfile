@@ -22,7 +22,9 @@ pipeline {
                         echo "new_user_env_input: ${new_user_env_input}"
                         user_env_input = new_user_env_input
 
-                        script {
+                        
+                    }
+                    script {
                             automated_value = sh (
                                     script: 'echo ${automated}',
                                     returnStdout: true
@@ -30,7 +32,6 @@ pipeline {
 
                             echo "automated value: ${automated value}"
                         }
-                    }
 
                 //Use this value to branch to different logic if needed
                 }
