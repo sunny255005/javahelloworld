@@ -30,11 +30,12 @@ pipeline {
         }
         stage('Confirm') {
             steps {
+                script{
                 if(user_env_input!=new_user_env_input){
                 input("Do you want to proceed building in ${user_env_input} environment?")
                 }
                 else{
-                sh 'echo going next stages'
+                sh 'echo going to  next stages'
                 }
             }
         }
