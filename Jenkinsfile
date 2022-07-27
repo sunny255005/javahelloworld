@@ -1,11 +1,11 @@
 properties([parameters([string('env')])])
 
-
 pipeline {
     environment {
         PROD_BRANCH = 'master'
         STAGING_BRANCH = 'staging'
         user_env_input = 'Development'
+
     }
 
     agent any
@@ -14,21 +14,18 @@ pipeline {
         stage('Which environment to build?') {
             steps {
                 script {
+
                     script {
                         new_user_env_input = sh (
-                                    script: 'echo ${env}',
-                                    returnStdout: true
-                        ).trim()
-
+        script: 'echo ${env}',
+        returnStdout: true
+    ).trim()
                         echo "new_user_env_input: ${new_user_env_input}"
                         user_env_input = new_user_env_input
-
                     }
 
                 //Use this value to branch to different logic if needed
                 }
-
-                
             }
         }
         stage('Confirm') {
@@ -67,5 +64,6 @@ pipeline {
                 }
             }
         }
+
     }
 }
