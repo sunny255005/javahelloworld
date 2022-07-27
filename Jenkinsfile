@@ -23,12 +23,7 @@ pipeline {
                         echo "new_user_env_input: ${new_user_env_input}"
                         user_env_input = new_user_env_input
 
-                    }
-
-                //Use this value to branch to different logic if needed
-                }
-
-                script {
+                    },
                     script {
                        automated_value = sh (
                                     script: 'echo ${automated}',
@@ -39,7 +34,10 @@ pipeline {
                        
                     }
 
+                //Use this value to branch to different logic if needed
                 }
+
+              
             }
         }
         stage('Confirm') {
