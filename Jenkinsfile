@@ -44,8 +44,16 @@ pipeline {
                     }
 
                 //Use this value to branch to different logic if needed
-                }
+
+
+
+
+
                 input("Do you want to proceed building in ${user_env_input} environment?")
+
+
+                }
+                
             }
         }
         stage('Docker Build') {
