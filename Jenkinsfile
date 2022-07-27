@@ -24,13 +24,12 @@ pipeline {
                         user_env_input = new_user_env_input
 
                     }
-                    
 
                 //Use this value to branch to different logic if needed
                 }
 
+                
             }
-            
         }
         stage('Confirm') {
             steps {
