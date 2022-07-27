@@ -17,7 +17,7 @@ pipeline {
                         new_user_env_input = sh (
                                     script: 'echo ${env}',
                                     returnStdout: true
-                        ).trim()
+                        ).trim(),
                         automated_value = sh (
                                     script: 'echo ${automated}',
                                     returnStdout: true
