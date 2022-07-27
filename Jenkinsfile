@@ -1,5 +1,4 @@
-properties([parameters([string('env')])])
-properties([parameters([string('automated')])])
+properties([parameters([string('env'), string('automated')])])
 
 pipeline {
     environment {
