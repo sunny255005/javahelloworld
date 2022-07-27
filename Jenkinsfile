@@ -5,7 +5,6 @@ pipeline {
         PROD_BRANCH = 'master'
         STAGING_BRANCH = 'staging'
         user_env_input = 'Development'
-
     }
 
     agent any
@@ -14,14 +13,13 @@ pipeline {
         stage('Which environment to build?') {
             steps {
                 script {
-
                     script {
                         new_user_env_input = sh (
         script: 'echo ${env}',
         returnStdout: true
     ).trim()
                         echo "new_user_env_input: ${new_user_env_input}"
-                        
+
                         user_env_input = new_user_env_input
                     }
 
@@ -32,28 +30,21 @@ pipeline {
         stage('Confirm') {
             steps {
                 script {
-
                     script {
                         automated_value = sh (
         script: 'echo ${automated}',
         returnStdout: true
     ).trim()
                         echo "automated_value: ${automated_value}"
-                        
-                       
+
                     }
 
                 //Use this value to branch to different logic if needed
 
-
-
-
-
-                input("Do you want to proceed building in ${user_env_input} environment?")
-
-
+                    if (automated_value != '0') {
+                        input("Do you want to proceed building in ${user_env_input} environment?")
+                    }
                 }
-                
             }
         }
         stage('Docker Build') {
@@ -87,6 +78,5 @@ pipeline {
                 }
             }
         }
-
     }
 }
