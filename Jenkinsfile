@@ -1,4 +1,5 @@
 properties([parameters([string('env')])])
+properties([parameters([string('automated')])])
 
 pipeline {
     environment {
@@ -27,13 +28,6 @@ pipeline {
                 //Use this value to branch to different logic if needed
                 }
 
-            }
-        }
-        stage('Confirm') {
-            steps {
-
-
-
                 script {
                     script {
                        automated_value = sh (
@@ -46,7 +40,10 @@ pipeline {
                     }
 
                 }
-
+            }
+        }
+        stage('Confirm') {
+            steps {
                 input("Do you want to proceed building in ${user_env_input} environment?")
             }
         }
