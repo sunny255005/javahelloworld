@@ -1,4 +1,5 @@
 properties([parameters([string('env')])])
+properties([parameters([string('automated')])])
 
 pipeline {
     environment {
@@ -21,6 +22,7 @@ pipeline {
         returnStdout: true
     ).trim()
                         echo "new_user_env_input: ${new_user_env_input}"
+                        echo "automated value ${automated}"
                         user_env_input = new_user_env_input
                     }
 
