@@ -35,7 +35,7 @@ pipeline {
 
                     script {
                         automated_value = sh (
-        script: 'echo ${automated_value}',
+        script: 'echo ${automated}',
         returnStdout: true
     ).trim()
                         echo "automated_value: ${automated_value}"
