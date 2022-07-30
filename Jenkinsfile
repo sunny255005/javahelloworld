@@ -1,8 +1,6 @@
 properties([parameters([string(description: '''Choose Anyone (Production OR Development or Testing) 
 NOTE: All Are Case Sensitive''', name: 'env'), booleanParam(defaultValue: true, description: 'If you want to bulid manually ', name: 'automated')])])
 
-properties([parameters([booleanParam(defaultValue: true, description: 'If you want to manually build', name: 'manual')])])
-pipeline {
     environment {
         PROD_BRANCH = 'master'
         STAGING_BRANCH = 'staging'
@@ -24,7 +22,7 @@ pipeline {
 
                         user_env_input = new_user_env_input
                         
-                        echo "manual:${manual}"
+                        
                     }
 
                 //Use this value to branch to different logic if needed
