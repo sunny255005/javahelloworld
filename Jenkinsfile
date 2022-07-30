@@ -1,5 +1,5 @@
 
-properties([parameters([choice(choices: ['Testing', 'Development', 'Production'], description: 'Choose Anyone (Production OR Development or Testing) ', name: 'env'), booleanParam(defaultValue: true,description: 'IMPORTANT NOTE : If you want to build this job manually (WITHOUT AUTOMATION) , then Please Tick The Above Button', name: 'manual')])])
+properties([parameters([choice(choices: ['Testing', 'Development', 'Production'], description: 'Choose Anyone (Production OR Development or Testing) ', name: 'env'), booleanParam(defaultValue: false,description: 'IMPORTANT NOTE : If you want to build this job manually (WITHOUT AUTOMATION) , then Please Tick The Above Button', name: 'manual')])])
 
 
 
@@ -46,7 +46,7 @@ pipeline{
 
                 //Use this value to branch to different logic if needed
 
-                    if (manual_value == 'false') {
+                    if (manual_value == 'true') {
                         input("Do you want to proceed building in ${user_env_input} environment?")
                     }
                 }
