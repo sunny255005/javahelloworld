@@ -1,9 +1,7 @@
-
-properties([parameters([booleanParam(defaultValue: true, name: 'manual'), string(description: '''Choose Anyone (Production OR Development or Testing) 
+properties([parameters([string(description: '''Choose Anyone (Production OR Development or Testing) 
 NOTE: All Are Case Sensitive''', name: 'env'), string(description: '''For automation USE 0 value
 For not automation(manual) use any value which is non-zero''', name: 'automated')])])
 
-pipeline {
     environment {
         PROD_BRANCH = 'master'
         STAGING_BRANCH = 'staging'
