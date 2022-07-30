@@ -1,5 +1,5 @@
 properties([parameters([string(description: '''Choose Anyone (Production OR Development or Testing) 
-NOTE: All Are Case Sensitive''', name: 'env'), booleanParam(defaultValue: true, 
+NOTE: All Are Case Sensitive''', name: 'env'), booleanParam(
 description: 'If you want to bulid manually ', name: 'manual')])])
 
 pipeline{
@@ -45,7 +45,7 @@ pipeline{
 
                 //Use this value to branch to different logic if needed
 
-                    if (manual_value =='true') {
+                    if (manual_value === true) {
                         input("Do you want to proceed building in ${user_env_input} environment?")
                     }
                 }
