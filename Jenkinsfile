@@ -1,5 +1,6 @@
 properties([parameters([string(description: '''Choose Anyone (Production OR Development or Testing) 
-NOTE: All Are Case Sensitive''', name: 'env'), booleanParam(defaultValue: true, description: 'If you want to bulid manually ', name: 'automated')])])
+NOTE: All Are Case Sensitive''', name: 'env'), booleanParam(defaultValue: true, 
+description: 'If you want to bulid manually ', name: 'automated')])])
 
     environment {
         PROD_BRANCH = 'master'
@@ -81,4 +82,4 @@ NOTE: All Are Case Sensitive''', name: 'env'), booleanParam(defaultValue: true, 
             }
         }
     }
-}
+
