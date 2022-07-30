@@ -26,7 +26,7 @@ pipeline {
 
                         user_env_input = new_user_env_input
                         
-                        echo manual:$manual
+                        echo "manual:${manual}"
                     }
 
                 //Use this value to branch to different logic if needed
