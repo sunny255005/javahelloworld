@@ -1,5 +1,5 @@
 
-properties([parameters([choice(choices: ['Testing', 'Development', 'Production'], description: 'Choose Anyone (Production OR Development or Testing) ', name: 'env'), booleanParam(description: 'If you want to build this job manually,then tick the mark,otherwise not', name: 'manual')])])
+properties([parameters([choice(choices: ['Testing', 'Development', 'Production'], description: 'Choose Anyone (Production OR Development or Testing) ', name: 'env'), booleanParam(description: 'If you want to build this job manually(WITHOUT AUTOMATION),then tick the mark,otherwise not', name: 'manual')])])
 
 
 
