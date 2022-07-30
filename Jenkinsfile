@@ -1,4 +1,4 @@
-properties([parameters([[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'abc', randomName: 'choice-parameter-3603878042901', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: 'return ["Prod","Dev","Test"]']]]])])
+properties([parameters([[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'abc', randomName: 'choice-parameter-3603878042901', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: 'return ["Production","Development","Testing"]']]]])])
 
 pipeline{
     environment {
@@ -12,7 +12,21 @@ pipeline{
     stages {
         stage('Which environment to build?') {
             steps {
-                echo 'env building'
+                script {
+                    script {
+                        new_user_env_input = sh (
+        script: 'echo ${abc}',
+        returnStdout: true
+    ).trim()
+                        echo "new_user_env_input: ${new_user_env_input}"
+
+                        user_env_input = new_user_env_input
+                        
+                        
+                    }
+
+                //Use this value to branch to different logic if needed
+                }
             }
         }
         stage('Confirm') {
