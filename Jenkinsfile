@@ -12,9 +12,7 @@ pipeline{
     stages {
         stage('Which environment to build?') {
             steps {
-                script {
-                   
-                }
+                echo 'env building'
             }
         }
         stage('Confirm') {
