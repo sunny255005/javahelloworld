@@ -2,6 +2,7 @@ properties([parameters([string(description: '''Choose Anyone (Production OR Deve
 NOTE: All Are Case Sensitive''', name: 'env'), booleanParam(defaultValue: true, 
 description: 'If you want to bulid manually ', name: 'automated')])])
 
+pipeline{
     environment {
         PROD_BRANCH = 'master'
         STAGING_BRANCH = 'staging'
@@ -82,4 +83,5 @@ description: 'If you want to bulid manually ', name: 'automated')])])
             }
         }
     }
+}
 
