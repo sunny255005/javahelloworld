@@ -18,7 +18,7 @@ pipeline{
                 script {
                     script {
                         new_user_env_input = sh (
-        script: 'echo ${abc}',
+        script: 'echo ${env}',
         returnStdout: true
     ).trim()
                         echo "new_user_env_input: ${new_user_env_input}"
