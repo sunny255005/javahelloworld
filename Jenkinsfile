@@ -1,6 +1,4 @@
-properties([parameters([string(description: '''Choose Anyone (Production OR Development or Testing) 
-NOTE: All Are Case Sensitive''', name: 'env'), booleanParam(
-description: 'If you want to bulid manually ', name: 'manual')])])
+properties([parameters([[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'abc', randomName: 'choice-parameter-3603878042901', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: 'return ["Prod","Dev","Test"]']]]])])
 
 pipeline{
     environment {
@@ -15,17 +13,17 @@ pipeline{
         stage('Which environment to build?') {
             steps {
                 script {
-                    script {
-                        new_user_env_input = sh (
-        script: 'echo ${env}',
-        returnStdout: true
-    ).trim()
-                        echo "new_user_env_input: ${new_user_env_input}"
+    //                 script {
+    //                     new_user_env_input = sh (
+    //     script: 'echo ${env}',
+    //     returnStdout: true
+    // ).trim()
+    //                     echo "new_user_env_input: ${new_user_env_input}"
 
-                        user_env_input = new_user_env_input
+    //                     user_env_input = new_user_env_input
                         
                         
-                    }
+    //                 }
 
                 //Use this value to branch to different logic if needed
                 }
@@ -34,20 +32,20 @@ pipeline{
         stage('Confirm') {
             steps {
                 script {
-                    script {
-                        manual_value = sh (
-        script: 'echo ${manual}',
-        returnStdout: true
-    ).trim()
-                        echo "manual_value: ${manual_value}"
+    //                 script {
+    //                     manual_value = sh (
+    //     script: 'echo ${manual}',
+    //     returnStdout: true
+    // ).trim()
+    //                     echo "manual_value: ${manual_value}"
 
-                    }
+    //                 }
 
                 //Use this value to branch to different logic if needed
 
-                    if (manual_value == 'true') {
+                    // if (manual_value == 'true') {
                         input("Do you want to proceed building in ${user_env_input} environment?")
-                    }
+                    //}
                 }
             }
         }
