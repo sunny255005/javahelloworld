@@ -1,6 +1,6 @@
 properties([parameters([string(description: '''Choose Anyone (Production OR Development or Testing) 
 NOTE: All Are Case Sensitive''', name: 'env'), booleanParam(defaultValue: true, 
-description: 'If you want to bulid manually ', name: 'automated')])])
+description: 'If you want to bulid manually ', name: 'manual')])])
 
 pipeline{
     environment {
@@ -35,17 +35,17 @@ pipeline{
             steps {
                 script {
                     script {
-                        automated_value = sh (
-        script: 'echo ${automated}',
+                        manual_value = sh (
+        script: 'echo ${manual}',
         returnStdout: true
     ).trim()
-                        echo "automated_value: ${automated_value}"
+                        echo "manual_value: ${manual_value}"
 
                     }
 
                 //Use this value to branch to different logic if needed
 
-                    if (automated_value ==true) {
+                    if (manual_value == true) {
                         input("Do you want to proceed building in ${user_env_input} environment?")
                     }
                 }
