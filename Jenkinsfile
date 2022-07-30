@@ -1,5 +1,4 @@
-properties([parameters([[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'abc', randomName: 'choice-parameter-3603878042901', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: 'return ["Production","Development","Testing"]']]]])])
-
+\properties([parameters([[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'env', randomName: 'choice-parameter-5889185792005', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: 'return ["Development","Testing","Production"]']]], booleanParam(description: 'If you want to build this job manually,then tick the mark,otherwise not', name: 'manual')])])
 pipeline{
     environment {
         PROD_BRANCH = 'master'
@@ -32,10 +31,20 @@ pipeline{
         stage('Confirm') {
             steps {
                 script {
-                
-                    
+                    script {
+                        manual_value = sh (
+        script: 'echo ${manual}',
+        returnStdout: true
+    ).trim()
+                        echo "manual_value: ${manual_value}"
+
+                    }
+
+                //Use this value to branch to different logic if needed
+
+                    if (manual_value == 'true') {
                         input("Do you want to proceed building in ${user_env_input} environment?")
-                
+                    }
                 }
             }
         }
