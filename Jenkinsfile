@@ -1,7 +1,5 @@
 properties([parameters([string(description: '''Choose Anyone (Production OR Development or Testing) 
-NOTE: All Are Case Sensitive''', name: 'env'), string(description: '''For automation USE 0 value
-For not automation(manual) use any value which is non-zero''', name: 'automated')])])
-
+NOTE: All Are Case Sensitive''', name: 'env'), booleanParam(defaultValue: true, description: 'If you want to bulid manually ', name: 'automated')])])
 
 properties([parameters([booleanParam(defaultValue: true, description: 'If you want to manually build', name: 'manual')])])
 pipeline {
@@ -47,7 +45,7 @@ pipeline {
 
                 //Use this value to branch to different logic if needed
 
-                    if (automated_value != '0') {
+                    if (automated_value ==true) {
                         input("Do you want to proceed building in ${user_env_input} environment?")
                     }
                 }
