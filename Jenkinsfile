@@ -13,39 +13,17 @@ pipeline{
         stage('Which environment to build?') {
             steps {
                 script {
-    //                 script {
-    //                     new_user_env_input = sh (
-    //     script: 'echo ${env}',
-    //     returnStdout: true
-    // ).trim()
-    //                     echo "new_user_env_input: ${new_user_env_input}"
-
-    //                     user_env_input = new_user_env_input
-                        
-                        
-    //                 }
-
-                //Use this value to branch to different logic if needed
+                   
                 }
             }
         }
         stage('Confirm') {
             steps {
                 script {
-    //                 script {
-    //                     manual_value = sh (
-    //     script: 'echo ${manual}',
-    //     returnStdout: true
-    // ).trim()
-    //                     echo "manual_value: ${manual_value}"
-
-    //                 }
-
-                //Use this value to branch to different logic if needed
-
-                    // if (manual_value == 'true') {
+                
+                    
                         input("Do you want to proceed building in ${user_env_input} environment?")
-                    //}
+                
                 }
             }
         }
