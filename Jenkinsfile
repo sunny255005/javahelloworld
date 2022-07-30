@@ -45,7 +45,7 @@ pipeline{
 
                 //Use this value to branch to different logic if needed
 
-                    if (manual_value === true) {
+                    if (manual_value =='true') {
                         input("Do you want to proceed building in ${user_env_input} environment?")
                     }
                 }
