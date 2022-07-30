@@ -1,4 +1,8 @@
-\properties([parameters([[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'env', randomName: 'choice-parameter-5889185792005', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: 'return ["Development","Testing","Production"]']]], booleanParam(description: 'If you want to build this job manually,then tick the mark,otherwise not', name: 'manual')])])
+
+properties([parameters([choice(choices: ['Testing', 'Development', 'Production'], description: 'Choose Anyone (Production OR Development or Testing) ', name: 'env'), booleanParam(description: 'If you want to build this job manually,then tick the mark,otherwise not', name: 'manual')])])
+
+
+
 pipeline{
     environment {
         PROD_BRANCH = 'master'
