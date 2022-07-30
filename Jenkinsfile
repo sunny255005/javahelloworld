@@ -2,6 +2,8 @@ properties([parameters([string(description: '''Choose Anyone (Production OR Deve
 NOTE: All Are Case Sensitive''', name: 'env'), string(description: '''For automation USE 0 value
 For not automation(manual) use any value which is non-zero''', name: 'automated')])])
 
+
+properties([parameters([booleanParam(defaultValue: true, description: 'If you want to manually build', name: 'manual')])])
 pipeline {
     environment {
         PROD_BRANCH = 'master'
