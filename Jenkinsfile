@@ -15,6 +15,9 @@ pipeline{
              quietPeriod(100)
             // more options
           }
+    triggers {
+              pollSCM ''
+          }
 
     stages {
         stage('Which environment to build?') {
