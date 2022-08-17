@@ -11,6 +11,10 @@ pipeline{
     }
 
     agent any
+     options {
+             quietPeriod(100)
+            // more options
+          }
 
     stages {
         stage('Which environment to build?') {
