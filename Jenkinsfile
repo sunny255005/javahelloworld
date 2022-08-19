@@ -12,7 +12,7 @@ pipeline{
 
     agent any
      options {
-             quietPeriod(120)
+             quietPeriod(60)
             // more options
           }
    
