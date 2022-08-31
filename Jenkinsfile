@@ -11,10 +11,7 @@ pipeline{
     }
 
     agent any
-     options {
-             quietPeriod(60)
-            // more options
-          }
+     
    
     stages {
         stage('Which environment to build?') {
@@ -62,31 +59,9 @@ pipeline{
             }
         }
 
-        stage('ECR Push') {
-            steps {
-                sh 'echo ECR Push'
-            }
-        }
+       
 
-        stage('Image Name Change') {
-            steps {
-                sh 'echo Image Name Change'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                script {
-                    if (user_env_input == 'Production') {
-                        echo 'master branch'
-                    } else if (user_env_input == 'Testing') {
-                        echo 'staging branch'
-                    } else {
-                        echo 'dev branch'
-                    }
-                }
-            }
-        }
+        
     }
 }
 
