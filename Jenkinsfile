@@ -64,6 +64,7 @@ pipeline{
         {
         withSonarQubeEnv {
     // some block
+            sh './gradlew sonarqube'
 }
         }
 
