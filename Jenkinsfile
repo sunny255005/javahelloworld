@@ -59,9 +59,13 @@ pipeline{
                 echo 'Building..'
             }
         }
+        
+        stage('Sonar Build')
+        {
         withSonarQubeEnv {
     // some block
 }
+        }
 
        
 
