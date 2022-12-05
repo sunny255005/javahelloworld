@@ -53,11 +53,15 @@ pipeline{
                 }
             }
         }
-        stage('Docker Build') {
+        stage('Clean Build') {
             steps {
+                sh 'mvn clean build'
                 echo 'Building..'
             }
         }
+        withSonarQubeEnv {
+    // some block
+}
 
        
 
