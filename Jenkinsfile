@@ -60,13 +60,7 @@ pipeline{
             }
         }
         
-        stage('Sonar Build')
-        {
-        withSonarQubeEnv {
-    // some block
-            sh './gradlew sonarqube'
-}
-        }
+       
 
        
 
