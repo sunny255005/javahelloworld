@@ -8,6 +8,9 @@ pipeline{
         PROD_BRANCH = 'master'
         STAGING_BRANCH = 'staging'
         user_env_input = 'Development'
+                is_sonarqube='No'
+
+        is_unit_test_continue='No'
     }
 
     agent any
@@ -55,7 +58,7 @@ pipeline{
         }
         stage('Clean Build') {
             steps {
-                sh 'mvn clean build'
+                sh ' clean build'
                 echo 'Building..'
             }
         }
