@@ -58,8 +58,7 @@ pipeline{
         }
         stage('Clean Build') {
             steps {
-                sh ' clean build'
-                echo 'Building..'
+                echo 'Clean Building..'
             }
         }
         
