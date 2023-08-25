@@ -1,7 +1,10 @@
 
 properties([parameters([choice(choices: ['Testing', 'Development', 'Production'], description: 'Choose Anyone (Production OR Development or Testing) ', name: 'env'), 
                         booleanParam(description: 'IMPORTANT NOTE : If you want to build this job manually (WITHOUT AUTOMATION) , then Please Tick The Above Button', name: 'manual'),
-                       booleanParam(description: 'If you want to enable Unit Test , then Please Tick The Above Button', name: 'unit_test_decider')])])
+                       booleanParam(description: 'If you want to enable Unit Test , then Please Tick The Above Button', name: 'unit_test_decider'),
+                        booleanParam(description: 'If you want to enable Sonarqube Code Quality Test , then Please Tick The Above Button', name: 'sonarqube_decider')
+                       
+                      ])])
 
 
 
@@ -10,8 +13,7 @@ pipeline{
         PROD_BRANCH = 'master'
         STAGING_BRANCH = 'staging'
         user_env_input = 'Development'
-                is_sonarqube='No'
-
+        is_sonarqube='No'
         is_unit_test_continue='No'
     }
 
@@ -118,6 +120,16 @@ pipeline{
 
                        script{
 
+                          script {
+                        sonarqube_decider_value = sh (
+        script: 'echo ${sonarqube_decider}',
+        returnStdout: true
+    ).trim()
+                        echo "sonarqube_decider_value: ${sonarqube_decider}"
+
+                    }
+
+                         if(sonarqube_decider_value=='true'){
                            def is_sonarqube_parameter = input(id: 'is_sonarqube', message: 'Do you want to continue with Sonarqube?',
 
                             parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'No',
@@ -127,7 +139,7 @@ pipeline{
                             ])
 
                            is_sonarqube=is_sonarqube_parameter
-
+                         }
                        }}}
 
              stage('Sonarqube Integeration') {
