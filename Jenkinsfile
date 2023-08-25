@@ -125,7 +125,7 @@ pipeline{
         script: 'echo ${sonarqube_decider}',
         returnStdout: true
     ).trim()
-                        echo "sonarqube_decider_value: ${sonarqube_decider}"
+                        echo "sonarqube_decider_value: ${sonarqube_decider_value}"
 
                     }
 
