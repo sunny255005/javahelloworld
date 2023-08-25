@@ -1,5 +1,7 @@
 
-properties([parameters([choice(choices: ['Testing', 'Development', 'Production'], description: 'Choose Anyone (Production OR Development or Testing) ', name: 'env'), booleanParam(description: 'IMPORTANT NOTE : If you want to build this job manually (WITHOUT AUTOMATION) , then Please Tick The Above Button', name: 'manual')])])
+properties([parameters([choice(choices: ['Testing', 'Development', 'Production'], description: 'Choose Anyone (Production OR Development or Testing) ', name: 'env'), 
+                        booleanParam(description: 'IMPORTANT NOTE : If you want to build this job manually (WITHOUT AUTOMATION) , then Please Tick The Above Button', name: 'manual'),
+                       booleanParam(description: 'If you want to enable Unit Test , then Please Tick The Above Button', name: 'unit_test_decider')])])
 
 
 
@@ -65,6 +67,15 @@ pipeline{
         stage('Confirm for unit tests') {
                     steps {
                        script{
+                            script {
+                        unit_test_decider_value = sh (
+        script: 'echo ${unit_test_decider}',
+        returnStdout: true
+    ).trim()
+                        echo "unit_test_decider_value: ${unit_test_decider_value}"
+
+                    }
+                        if(unit_test_decider_value =='true'){
                            def is_unit_test_continue_parameter = input(id: 'is_unit_test_continue', message: 'Do you want to go for unit tests and jacoco reports?',
 
                             parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'No',
@@ -74,7 +85,7 @@ pipeline{
                             ])
 
                             is_unit_test_continue=is_unit_test_continue_parameter
-
+                        }
                        }}}
 
                 stage('Unit Tests & Jacoco Reports') {
